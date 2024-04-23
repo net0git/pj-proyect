@@ -1,0 +1,32 @@
+<div class="panel">
+    <br>
+    <h1 class="text-center">tabla de Produccion</h1>
+    <button type="button" class="btn btn-success" (click)="newProduccion()" >+add</button>
+    <br>
+    
+    <table class="table">
+        <thead >
+          <tr>
+            <th scope="col">Nro</th>
+            <th scope="col">DEPENDENCIA</th>
+            <th scope="col">MAGISTRADO</th>
+            <th scope="col">AÑO</th> 
+            <th scope="col">MES</th>  
+            <th scope="col">FEC_CREACION</th> 
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produccion of producciones, index as i" class="table-barra"  (click)="entrarDetalle(produccion.id_produccion)">
+            <th scope="row">{{i+1}}</th>
+            <td>{{produccion.nombre_dependencia}}</td>
+            <td>{{produccion.nombre_magistrado}}</td>
+            <td>{{produccion.anio}}</td>
+            <td>{{produccion.mes}}</td>
+            <td>{{produccion.created |date:'dd/MM/yyyy'}}</td>
+          </tr>
+         
+        </tbody>
+      </table>
+
+</div>

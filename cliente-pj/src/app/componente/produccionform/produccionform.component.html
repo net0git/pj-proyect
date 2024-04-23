@@ -1,0 +1,89 @@
+<div class="panel">
+    <div class="formulario mt-4">
+        <form>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group  ">
+                        <label for="formGroupExampleInput1">DEPENDENCIAS:</label>
+                        <select id="selectdependencia" class="form-select" aria-label="Default select example" (change)="onDependenciaSeleccionada()" >
+                            <option value="0" selected>ELIGE DEPENDENCIA</option>
+                            <option *ngFor="let item of listaDependencias" [value]="item.id_dependencia">{{ item.nombre_dependencia }}</option>
+                          </select>
+                    </div>
+                    <div class="form-group  mt-2 ">
+                        <label for="formGroupExampleInput2">dependenciaS:</label>
+                        <select id="selectmagistrado"  class="form-select" aria-label="Default select example" >
+                            <option selected>ELIGE MAGISTRADO</option>
+                            <option *ngFor="let item of listaMagistrados" [value]="item.id_magistrado">{{ item.nombre_magistrado }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group ">
+                        <label for="formGroupExampleInput3">AÑO:</label>
+                        <input  type="text" class="form-control" id="anio" >
+                      </div>
+                    <div class="form-group mt-2">
+                        <label for="formGroupExampleInput4">MES:</label>
+                        <input type="number" class="form-control" id="mes" >
+                    </div>
+                </div>
+
+            </div>
+            
+           
+        </form>
+    </div>
+
+    <div class="cuerpo mt-4">
+        <br>
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">FUNCIONES</th>
+                <th scope="col">EN EL PERIDO</th>
+                <th scope="col">REACTIVADOS </th>
+                <th scope="col">ESPECIAL COMPLEJIDAD</th>
+                <th scope="col">APELACION</th>
+                <th scope="col">TRAMITE</th>
+              </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let item of listaFunciones, index as i">
+                
+                    <td >{{item.nombre_funcion}}</td>
+                    <!-- <td><input type="number"></td>
+                    <td><input type="number" ></td>
+                    <td><input type="number" ></td>
+                    <td><input type="number"  ></td>
+                    <td><input type="number"  ></td> -->
+                    <td><input type="number"  [(ngModel)]="valoresEntrada[i].valor1"></td>
+                    <td><input type="number"  [(ngModel)]="valoresEntrada[i].valor2"></td>
+                    <td><input type="number"  [(ngModel)]="valoresEntrada[i].valor3"></td>
+                    <td><input type="number"  [(ngModel)]="valoresEntrada[i].valor4"></td>
+                    <td><input type="number"  [(ngModel)]="valoresEntrada[i].valor5"></td>
+               
+                </tr>
+              
+            </tbody>
+          </table>
+         
+    </div>
+    <br>
+    <div class="obs">
+        <div class="form-group ">
+            <label for="exampleFormControlTextarea1">OBSERVACIONES:</label>
+            <textarea class="form-control" id="exampleFormControlTextareaObser" rows="3" ></textarea>
+        </div>
+
+    </div>
+    <br>
+    <div class="footer d-flex justify-content-end align-items-center">
+        <button type="button" class="btn btn-success" (click)=" obtenerValoresJson()" >MOSTRAR JSON</button> 
+    </div>
+
+    <div class="footer d-flex justify-content-end align-items-center">
+        <button type="button" class="btn btn-success" (click)=" GuardarDatos()" >mostar datos</button> 
+    </div>
+
+</div>

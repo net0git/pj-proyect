@@ -1,0 +1,22 @@
+@import '../../../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+
+.custom-modal-transition {
+    transition: opacity 0.3s ease; /* Duración y tipo de transición personalizados */
+  }
+
+
+
+table thead {
+    color: rgb(24, 67, 105);
+    position: sticky;
+    top: 0;
+}
+thead th{
+    text-align: center;
+}
+
+.table-barra:hover{
+    cursor: pointer;
+    background-color: #306eb4c5 !important;
+    color: aliceblue;
+}

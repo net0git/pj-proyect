@@ -177,15 +177,15 @@ class ProduccionController{
     public async ModificarProduccion(req: Request, res: Response): Promise<void> {
         try {
             const { id_produccion } = req.params;
-            const { id_dependencia, id_magistrado, anio, mes, matriZ, obs} = req.body;
-            const date=new Date();
+            const { matriz, obs} = req.body;
+            
 
             const consulta = `
                         UPDATE t_produccion
-                        SET id_dependencia=$1, id_magistrado=$2, anio=$3, mes=$4, matriz=$5, obs=$6, created=$7
-                        WHERE id_produccion=$8;
+                        SET matriz=$1, obs=$2
+                        WHERE id_produccion=$3;
                 `;
-            const valores = [id_dependencia, id_magistrado, anio, mes, matriZ, obs,date, id_produccion];
+            const valores = [matriz, obs, id_produccion];
 
             db.query(consulta, valores, (error, resultado) => {
                 if (error) {

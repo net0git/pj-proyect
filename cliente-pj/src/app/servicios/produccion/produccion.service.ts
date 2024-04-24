@@ -35,4 +35,8 @@ export class ProduccionService {
     return this.http.get(this.api_produccion+'/'+id_produccion)
   }
 
+  //modificar produccion
+  ModificarProduccionXid(id_produccion:any,body:any){
+    return this.http.put(this.api_produccion+'/'+id_produccion,body)
+  }
 }

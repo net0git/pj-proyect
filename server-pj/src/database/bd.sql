@@ -32,5 +32,7 @@ CREATE TABLE t_produccion (
     mes INTEGER,
     matriz VARCHAR,
     obs VARCHAR,
-    created DATE
+    created DATE,
+    estado BOOL
+
 );

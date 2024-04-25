@@ -35,6 +35,7 @@ class ProduccionController {
                                 t_dependencias ON t_produccion.id_dependencia = t_dependencias.id_dependencia
                             JOIN 
                                 t_magistrados ON t_produccion.id_magistrado = t_magistrados.id_magistrado
+                            ORDER BY t_produccion.created
                                 
                          
             `;
@@ -74,14 +75,14 @@ class ProduccionController {
                 const { dep, mag, anio, mes } = req.params;
                 const consulta = ` 
                                 SELECT 
-                                    t_produccion.id_produccion,
-                                    t_dependencias.nombre_dependencia,
+                                    t_produccion.id_produccion,                                    t_dependencias.nombre_dependencia,
                                     t_magistrados.nombre_magistrado,
                                     t_produccion.anio,
                                     t_produccion.mes,
                                     t_produccion.matriz,
                                     t_produccion.obs,
-                                    t_produccion.created
+                                    t_produccion.created,
+                                    t_produccion.estado
 
                                 FROM 
                                     t_produccion
@@ -138,13 +139,14 @@ class ProduccionController {
             try {
                 const { id_dependencia, id_magistrado, anio, mes, matriz, obs } = req.body;
                 const date = new Date();
+                let estado = true;
                 const consulta = `
 
-                    INSERT INTO t_produccion(id_dependencia, id_magistrado, anio, mes, matriz, obs, created)
-                              VALUES ($1, $2, $3, $4, $5, $6, $7);
+                    INSERT INTO t_produccion(id_dependencia, id_magistrado, anio, mes, matriz, obs, estado, created)
+                              VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
            
             `;
-                const valores = [id_dependencia, id_magistrado, anio, mes, matriz, obs, date];
+                const valores = [id_dependencia, id_magistrado, anio, mes, matriz, obs, estado, date];
                 database_1.default.query(consulta, valores, (error, resultado) => {
                     if (error) {
                         console.error('Error al insertar produccion:', error);
@@ -161,24 +163,29 @@ class ProduccionController {
             }
         });
     }
-    //FUNCION PARA ELIMINAR UNA PRODUCCION
-    EliminarProduccion(req, res) {
+    //FUNCION PARA ELIMINAR UNA PRODUCCION (no lo elimina como tal, cambiamos el estado de la produccion)
+    CambioDeEstadoProduccion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { id_produccion } = req.params;
-                const consulta = 'DELETE FROM t_produccion where id_produccion =$1';
-                database_1.default.query(consulta, [id_produccion], (error, resultado) => {
+                const { estado } = req.body;
+                const consulta = `
+                        UPDATE t_produccion
+                          SET  estado=$1
+                        WHERE id_produccion=$2;
+                `;
+                database_1.default.query(consulta, [estado, id_produccion], (error, resultado) => {
                     if (error) {
-                        console.error('Error al eliminar produccion:', error);
+                        console.error('Error al cambiar de estado produccion:', error);
                     }
                     else {
-                        console.log('produccion eliminado correctamente');
-                        res.json({ text: 'la produccion se elimino correctamente' });
+                        console.log('cambio de estado  de produccion correctamente');
+                        res.json({ text: 'el estado de la produccion se cambio correctamente' });
                     }
                 });
             }
             catch (error) {
-                console.error('Error al eliminar produccion:', error);
+                console.error('Error al cambiar el estado de produccion:', error);
                 res.status(500).json({ error: 'Error interno del servidor' });
             }
         });

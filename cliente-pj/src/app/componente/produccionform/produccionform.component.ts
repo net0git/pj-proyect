@@ -134,7 +134,5 @@ constructor(private produccionService:ProduccionService){
       }
     )
   }
-   
-
-  
+ 
 }

@@ -1,0 +1,20 @@
+@import '../../../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+.title{
+    
+    background: #9cceff73;
+    width: 100%;
+
+}
+
+.icon-custom {
+    
+    color:rgba(179, 33, 33, 0.699);/* Establece el color del texto en blanco */
+    cursor: pointer; /* Cambiar el cursor a una manito cuando el ratón está sobre el icono */
+    font-weight: bold; 
+    font-size: 28px;
+}
+
+.icon-custom:hover {
+    color:rgb(250, 40, 40);
+   
+  }

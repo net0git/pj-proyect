@@ -18,7 +18,7 @@ class ProduccionRoutes {
         this.router.get('/api/produccion/lista/magistrados', produccionController_1.default.ObtenerMagistrados);
         this.router.get('/api/produccion/lista/funciones/:id_dependencia', produccionController_1.default.ObtenerFuncionesXdependencia);
         this.router.post('/api/produccion', produccionController_1.default.GuardarProduccion);
-        this.router.delete('/api/produccion/:id_produccion', produccionController_1.default.EliminarProduccion);
+        this.router.put('/api/produccion/detalle/:id_produccion', produccionController_1.default.CambioDeEstadoProduccion);
         this.router.put('/api/produccion/:id_produccion', produccionController_1.default.ModificarProduccion);
         // this.router.get('/api', (req, res) => {
         //     res.send("hola neto al final te diste cuenta");

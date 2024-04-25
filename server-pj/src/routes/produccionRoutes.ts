@@ -20,7 +20,7 @@ class ProduccionRoutes{
         this.router.get('/api/produccion/lista/magistrados',produccionController.ObtenerMagistrados)
         this.router.get('/api/produccion/lista/funciones/:id_dependencia',produccionController.ObtenerFuncionesXdependencia)
         this.router.post('/api/produccion',produccionController.GuardarProduccion)
-        this.router.delete('/api/produccion/:id_produccion',produccionController.EliminarProduccion)
+        this.router.put('/api/produccion/detalle/:id_produccion',produccionController.CambioDeEstadoProduccion)
         this.router.put('/api/produccion/:id_produccion',produccionController.ModificarProduccion)
 
 

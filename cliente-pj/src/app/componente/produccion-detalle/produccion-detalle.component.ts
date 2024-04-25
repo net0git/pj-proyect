@@ -20,6 +20,7 @@ export class ProduccionDetalleComponent implements OnInit{
   body: any={
     matriz:null,
     obs:null,
+    estado:null,
   }
 
   ngOnInit(): void {
@@ -80,7 +81,32 @@ export class ProduccionDetalleComponent implements OnInit{
 
     // console.log(this.body)
 
+    this.produccionService.ModificarProduccionXid(params["id"],this.body).subscribe(
+      res=>{
+          console.log(res)
+      },
+      err=>{
+          console.error(err)
+      }
+    )
+
     
   }
 
+
+  ModifcarEstadoProduccion(){
+    const params=this.activatedRoute.snapshot.params;
+    this.body.estado=false;
+    this.produccionService.ModificarEstadoProduccion(params["id"],this.body).subscribe(
+      res=>{
+        console.log(res);
+       
+      },
+      err=>{
+        console.error(err)
+      }
+    )
+  }
+
+ 
 }
